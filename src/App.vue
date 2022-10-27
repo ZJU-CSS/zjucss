@@ -15,8 +15,6 @@ export default {
 * {
   margin: 0;
   padding: 0;
-  background-color: black;
-
   a {
     text-decoration: none;
   }

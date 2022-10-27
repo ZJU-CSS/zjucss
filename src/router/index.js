@@ -10,7 +10,18 @@ export default new Router({
       component: () => import('../views/frontglass/FrontGlass')
     },
     {
-      path
+      path: '/test',
+      component: () => import('../views/test.vue')
+    },
+    {
+      path: '/magicmirror',
+      component: () => import('../views/magicmirror/Main'),
+      children: [
+        {
+          path: 'page1',
+          component: () => import('../components/magicmirror/Page1')
+        }
+      ]
     }
   ]
 })
