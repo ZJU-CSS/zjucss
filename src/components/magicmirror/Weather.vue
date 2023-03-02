@@ -14,32 +14,27 @@ export default {
     return {
       temperature: 20 + '°C',
       weather: 'rain',
-      iconSrc: 'http://openweathermap.org/img/wn/04n.png'
+      iconSrc: 'http://openweathermap.org/img/wn/04n.png',
     }
   },
   methods: {
     getWeather() {
       this.$axios
-        .get(
-          'http://api.openweathermap.org/data/2.5/weather?q=hangzhou&appid=7328419133fa6fd44868e923b84869d1'
-        )
+        .get('http://api.openweathermap.org/data/2.5/weather?q=hangzhou&appid=7328419133fa6fd44868e923b84869d1')
         .then((response) => {
           this.temperature = Math.floor(response.data.main.temp - 273.15) + '°C'
           this.weather = response.data.weather[0].main
-          this.iconSrc =
-            'http://openweathermap.org/img/wn/' +
-            response.data.weather[0].icon +
-            '.png'
+          this.iconSrc = 'http://openweathermap.org/img/wn/' + response.data.weather[0].icon + '.png'
         })
       // console.log(this.iconSrc)
-    }
+    },
   },
   created() {
     this.getWeather()
     setInterval(() => {
       this.getWeather()
-    }, 150000)
-  }
+    }, 600000)
+  },
 }
 </script>
 

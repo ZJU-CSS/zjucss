@@ -2,16 +2,31 @@ import http from './http'
 import { ipLists } from '@/constant/constants'
 import { Message } from 'element-ui'
 
+let sendlist1 = [
+  'http://192.168.0.161:7777/url/交通1号',
+  'http://192.168.0.143:7777/url/交通2号',
+  'http://192.168.0.165:7777/url/交通3号',
+  'http://192.168.0.173:7777/url/交通4号',
+  'http://192.168.0.197:7777/url/交通5号',
+]
+let sendlist2 = [
+  'http://192.168.0.161:7777/url/conclustion',
+  'http://192.168.0.143:7777/url/MIC',
+  'http://192.168.0.165:7777/url/ML',
+  'http://192.168.0.173:7777/url/DTW',
+  'http://192.168.0.197:7777/url/news',
+]
+
 const ipChromeMap = {
-  拼接屏1号机: false,
-  拼接屏2号机: false,
-  拼接屏3号机: false,
-  拼接屏4号机: false,
-  拼接屏5号机: false,
-  弧形墙投影: false,
-  外玻璃投影: false,
-  窗户投影: false,
-  test: false,
+  拼接屏1号机: true,
+  拼接屏2号机: true,
+  拼接屏3号机: true,
+  拼接屏4号机: true,
+  拼接屏5号机: true,
+  弧形墙投影: true,
+  外玻璃投影: true,
+  窗户投影: true,
+  test: true,
 }
 /**
  * 打开浏览器
@@ -19,57 +34,23 @@ const ipChromeMap = {
  * @return {Promise<void>}
  */
 export async function openChrome(id) {
-  const ip = ipLists[id]
-  let res = await http({
-    methods: 'get',
-    url: ip + 'openChrome',
-  })
-  res = res.data
-  if (res !== 'success') {
-    const reg = /Current browser version is (\d+)./
-    if (reg.test(res)) {
-      Message.warning('正在更新ChromeDriver，请稍等~')
-      const version = reg.exec(res)[1]
-      let list = await http({
-        methods: 'get',
-        url: ip + 'getVersionList',
-      })
-      list = list.data
-      for (let i = 0; i < list.length; i++) {
-        if (list[i].name.startsWith(version)) {
-          console.log(list[i].name)
-          const url = list[i].url + 'chromedriver_win32.zip'
-          let res = await http({
-            method: 'post',
-            data: {
-              url,
-            },
-            url: ip + 'updateDriver',
-          })
-          if (res.data === 'success') {
-            let res = await http({
-              methods: 'get',
-              url: ip + 'openChrome',
-            })
-            res = res.data
-            if (res === 'success') {
-              ipChromeMap[id] = true
-              Message.success(id + '浏览器打开成功！')
-            } else {
-              Message.error('更新ChromeDriver错误，请手动更新')
-            }
-          } else {
-            Message.error('更新ChromeDriver错误，请手动更新')
-          }
-          break
-        }
-      }
-    } else {
-      Message.error('未知错误！')
+  try {
+    const ip = ipLists[id]
+    let res = await http({
+      methods: 'get',
+      url: ip + 'openChrome',
+    })
+    res = res.data
+    if (res == 'error') {
+      Message.error(id + '出现未知错误')
+      ipChromeMap[id] = false
+    } else if (res == 'success') {
+      Message.success(id + '打开浏览器成功')
+      ipChromeMap[id] = true
     }
-  } else {
-    ipChromeMap[id] = true
-    Message.success(id + '浏览器打开成功！')
+  } catch (e) {
+    Message.error(id + '出现未知错误')
+    ipChromeMap[id] = false
   }
 }
 
@@ -80,25 +61,64 @@ export async function openChrome(id) {
  * @return {Promise<void>}
  */
 export async function openContent(id, content) {
-  if (ipChromeMap[id] === false) {
-    await openChrome(id)
-  }
-  const ip = ipLists[id]
-  let res = await http({
-    methods: 'get',
-    url: ip + 'url/' + content,
-  })
-  res = res.data
-  if (res === 'success') {
-    Message.success(id + content + '打开成功！')
-    switch (content) {
-      case 'welcome':
-        await clickScreen(10, 10, ip)
-        break
+  try {
+    if (ipChromeMap[id] === false) {
+      await openChrome(id)
     }
+    const ip = ipLists[id]
+    let res = await http({
+      methods: 'get',
+      url: ip + 'url/' + content,
+    })
+    res = res.data
+    if (res === 'success') {
+      Message.success(id + content + '打开成功！')
+      await clickScreen(10, 10, ip)
+    } else {
+      Message.error(id + content + '打开失败！')
+    }
+  } catch (e) {
+    Message.error(id + content + '打开失败！')
   }
 }
 
+export function openPinjie1() {
+  sendlist1.forEach((item) => {
+    http({
+      methods: 'get',
+      url: item,
+    })
+      .then((res) => {
+        if (res === 'success') {
+          Message.success('打开成功')
+        } else {
+          Message.error('打开失败')
+        }
+      })
+      .catch((res) => {
+        Message.error('打开失败')
+      })
+  })
+}
+
+export function openPinjie2() {
+  sendlist2.forEach((item) => {
+    http({
+      methods: 'get',
+      url: item,
+    })
+      .then((res) => {
+        if (res === 'success') {
+          Message.success('打开成功')
+        } else {
+          Message.error('打开失败')
+        }
+      })
+      .catch((res) => {
+        Message.error('打开失败')
+      })
+  })
+}
 /**
  * 点击屏幕播放内容
  * @param {Number}x

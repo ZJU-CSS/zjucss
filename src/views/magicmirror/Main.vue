@@ -20,16 +20,16 @@ import weather from '@/components/magicmirror/Weather.vue'
 export default {
   components: {
     clock,
-    weather
-  }
+    weather,
+  },
 }
 </script>
 
 <style lang="less" scoped>
 * {
-  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
-    'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
-  background-color: #091921;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial,
+    sans-serif;
+  background-color: black;
   //background-color: rgb(3, 35, 60);
   height: 100vh;
   #box {
@@ -105,5 +105,4 @@ export default {
     }
   }
 }
-
 </style>
