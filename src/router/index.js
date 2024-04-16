@@ -7,11 +7,11 @@ export default new Router({
   routes: [
     {
       path: '/frontglass',
-      component: () => import('../views/frontglass/FrontGlass')
+      component: () => import('../views/frontglass/FrontGlass'),
     },
     {
       path: '/test',
-      component: () => import('../views/test.vue')
+      component: () => import('../views/test.vue'),
     },
     {
       path: '/magicmirror',
@@ -19,9 +19,13 @@ export default new Router({
       children: [
         {
           path: 'page1',
-          component: () => import('../components/magicmirror/Page1')
-        }
-      ]
-    }
-  ]
+          component: () => import('../components/magicmirror/Page1'),
+        },
+      ],
+    },
+    {
+      path: '/upload',
+      component: () => import('../views/upload.vue'),
+    },
+  ],
 })

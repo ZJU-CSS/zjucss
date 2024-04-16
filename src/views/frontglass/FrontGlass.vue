@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <div class="container" v-show="!this.flag">
+    <div class="container" v-show="flag">
       <img src="@/assets/frontglass/1.jpg" id="img1" />
       <!--      <TemChange v-show="this.count == 0" id="page1"></TemChange>-->
       <!--      <LiteracyScores v-show="this.count == 1" id="page1"></LiteracyScores>-->
@@ -10,21 +10,23 @@
       <!--      <Page6 v-show="this.count == 5" id="page1"></Page6>-->
       <!--      <Page7 v-show="this.count == 6" id="page1"></Page7>-->
       <!--      <Page8 v-show="this.count == 7" id="page1"></Page8>-->
-      <video src="@/assets/frontglass/video.mp4" muted="muted" autoplay loop class="video"></video>
+      <video src="@/assets/frontglass/welcome2.mp4" muted="muted" autoplay loop class="video"></video>
       <iframe src="arxiv.html" frameborder="0" id="page2"></iframe>
       <img src="@/assets/frontglass/6.png" id="img2" />
     </div>
-    <div class="test-container" v-show="this.flag">
+    <div class="test-container" v-show="!flag">
       <welcome></welcome>
     </div>
   </div>
 </template>
 
 <script>
+import TemChange from '@/views/frontglass/TemChange'
 import Welcome from '@/views/frontglass/Welcome'
 export default {
   components: {
     Welcome,
+    TemChange,
   },
   data() {
     return {
@@ -37,9 +39,9 @@ export default {
     this.timer = setInterval(() => {
       setTimeout(() => {
         this.flag = !this.flag
-      }, 12000)
+      }, 10000)
       this.flag = !this.flag
-    }, 24000)
+    }, 20000)
   },
   beforeDestroy() {
     clearInterval(this.timer)

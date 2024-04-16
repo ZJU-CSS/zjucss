@@ -1,24 +1,19 @@
 <template>
   <div class="test-container">
-    <div id="title">Climate spiral to show temperature change</div>
+    <div id="title">The generation game</div>
     <!-- TODO: 剪切视频，把这地方的图片换成视频 -->
-    <video
-      loop="loop"
-      muted="muted"
-      autoplay="autoplay"
-      src="@/assets/frontglass/tem/TemChange.mp4"
-      id="img"
-    ></video>
+    <img src="@/assets/frontglass/tem/tem.png" alt="" id="img" />
     <div id="content">
-      Say what you will about circular visualization, but the spiral plays. This
-      one from NASA shows global temperature change over time: The visualization
-      presents monthly global temperature anomalies between the years 1880-2021.
-      These temperatures are based on the GISS Surface Temperature Analysis
-      (GISTEMP v4), an estimate of global surface temperature change. Anomalies
-      are defined relative to a base period of 1951-1980. The data file used to
-      create this visualization can be accessed here. This is based on Ed
-      Hawkins’ chart originally from 2016, but watch to the end for some extra
-      sauce.
+      Large, creative ai models will transform how people live and work. ChatGPT embodies more knowledge than any human
+      has ever known. It can converse cogently about mineral extraction in Papua New Guinea, or about TSMC, a firm that
+      finds itself in the geopolitical crosshairs. GPT­4, the artificial neural network which powers ChatGPT, has aced
+      exams that serve as gateways for people to enter careers in law and medicine in America. It can generate songs,
+      poems and essays. Other “generative AI” models can churn out digital photos, drawings and animations. Running
+      alongside this excitement is deep concern, inside the tech industry and beyond, that generative AI models are
+      being developed too quickly. GPT­4 is a type of generative AI called a large language model (LLM). Tech giants
+      like Alphabet, Amazon and Nvidia have all trained their own LLMs, and given them names like PaLM, Megatron, Titan
+      and Chinchilla. LLM have gone much further than anyone might have believed a few years ago. However you define
+      AGI, AI researchers seem closer to it than they were a couple of years ago.
     </div>
   </div>
 </template>
@@ -26,7 +21,7 @@
 <script>
 export default {
   methods: {},
-  mounted() {}
+  mounted() {},
 }
 </script>
 

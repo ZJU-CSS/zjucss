@@ -1,7 +1,7 @@
 <template>
   <div class="front_glass">
     <div class="logo">ZJUCSS</div>
-    <div class="text">欢迎来到计算社会科学研究中心</div>
+    <div class="text">欢迎来到浙江大学计算社会科学中心</div>
     <video autoplay loop muted src="../../assets/welcome.mp4"></video>
   </div>
 </template>
@@ -27,11 +27,12 @@ export default {
   top: 54%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 100px;
+  width: 70%;
+  font-size: 140px;
   font-weight: bold;
   color: #fff;
   text-align: center;
-  letter-spacing: 0.5em;
+  letter-spacing: 0.2em;
   z-index: 100;
   text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
 }
@@ -42,7 +43,7 @@ export default {
   top: 33%;
   left: 5%;
   z-index: 100;
-  font-size: 50px;
+  font-size: 40px;
   font-weight: bold;
   color: #fff;
   text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);

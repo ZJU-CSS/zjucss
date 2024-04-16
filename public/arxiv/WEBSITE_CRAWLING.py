@@ -10,7 +10,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # crawler initialize
-os.chdir('/Users/xxxxxxqq/vscodeProjects/arxiv')
+os.chdir('/Users/gxq/arxiv')
 header = {
     'Host': 'arxiv.org',
     'Accept':
@@ -177,7 +177,7 @@ def main():
     #output(url_3, url_3_t)
     #output(url_4, url_4_t)
 
-    workbook.save('/Users/xxxxxxqq/vscodeProjects/arxiv/arxiv_data_updated.xls')
+    workbook.save('/Users/gxq/arxiv/arxiv_data_updated.xls')
 
     print('Complete')
 
